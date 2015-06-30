@@ -2,6 +2,8 @@ class RedirectRule < ActiveRecord::Base
   extend Redirector::RegexAttribute
   regex_attribute :source
 
+  belongs_to :owner, polymorphic: true
+
   has_many :request_environment_rules, :inverse_of => :redirect_rule, :dependent => :destroy
 
   attr_accessible :source,
